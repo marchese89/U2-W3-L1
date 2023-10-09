@@ -1,7 +1,6 @@
 const form = document.getElementById("pet-form");
 
-// const pets = [];
-window.localStorage.setItem("pets", []);
+const pets = [];
 
 class Pet {
   constructor(petName, ownerName, species, breed) {
@@ -29,17 +28,15 @@ form.addEventListener("submit", (e) => {
   document.getElementById("species").value = "";
   document.getElementById("breed").value = "";
   const newPet = new Pet(petName, ownerName, species, breed);
-  window.localStorage.setItem("pets")(
-    Array.from(window.localStorage.getItem("pets")).push(newPet)
-  );
-  console.log(Array.from(window.localStorage.getItem("pets")));
-  //   pets.push(newPet);
+
+  pets.push(newPet);
+
   renderList();
 });
 
 function renderList() {
   const petList = document.getElementById("pet-list");
-  const pets = Array.from(window.localStorage.getItem("pets"));
+  petList.innerHTML = "";
   pets.forEach((e) => {
     petList.innerHTML =
       petList.innerHTML +
@@ -64,10 +61,10 @@ function renderList() {
 const pet1 = new Pet("PetName1", "PetOwner1", "PetSpecies1", "PetBreed1");
 const pet2 = new Pet("PetName2", "PetOwner1", "PetSpecies2", "PetBreed2");
 
-// if (pet1.sameOwner(pet2)) {
-//   console.log("i due animali hanno lo stesso padrone");
-// } else {
-//   console.log("i due animali NON hanno lo stesso padrone");
-// }
+if (pet1.sameOwner(pet2)) {
+  console.log("i due animali hanno lo stesso padrone");
+} else {
+  console.log("i due animali NON hanno lo stesso padrone");
+}
 
 renderList();
