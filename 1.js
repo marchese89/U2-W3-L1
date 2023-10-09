@@ -8,8 +8,10 @@ class User {
   compareAge(user) {
     if (this.age > user.age) {
       return `${this.firstName} è più vecchio di ${user.firstName}`;
-    } else {
+    } else if (this.age < user.age) {
       return `${this.firstName} è più giovane di ${user.firstName}`;
+    } else {
+      return `i due utenti hanno la stessa età`;
     }
   }
 }
