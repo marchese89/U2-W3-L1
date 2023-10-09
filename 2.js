@@ -37,11 +37,18 @@ form.addEventListener("submit", (e) => {
 function renderList() {
   const petList = document.getElementById("pet-list");
   petList.innerHTML = "";
-  pets.forEach((e) => {
+  pets.forEach((e, i) => {
+    let red = false;
+    for (let x = 0; x < pets.length; x++) {
+      if (pets[x].sameOwner(e) && x !== i) {
+        red = true;
+      }
+    }
+    const color = red ? "text-danger" : "";
     petList.innerHTML =
       petList.innerHTML +
       `
-        <div class="row">
+        <div class="row ${color}">
         <div class="col-3">
         ${e.petName}
         </div>
@@ -59,7 +66,7 @@ function renderList() {
 }
 
 const pet1 = new Pet("PetName1", "PetOwner1", "PetSpecies1", "PetBreed1");
-const pet2 = new Pet("PetName2", "PetOwner1", "PetSpecies2", "PetBreed2");
+const pet2 = new Pet("PetName2", "PetOwner", "PetSpecies2", "PetBreed2");
 
 if (pet1.sameOwner(pet2)) {
   console.log("i due animali hanno lo stesso padrone");
